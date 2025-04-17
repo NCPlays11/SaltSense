@@ -2,12 +2,10 @@ from flask import Flask, render_template, jsonify, redirect, flash, request, url
 import pandas as pd
 import os
 import csv
-from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-load_dotenv()
-app.secret_key = os.getenv("SECRETKEY")
+app.config["SECRET_KEY"] = os.getenv("FLASK_KEY")
 
 file_path = os.path.join(app.root_path, "static", "desalination_data.csv")
 df = pd.read_csv(file_path)
@@ -129,4 +127,4 @@ def page_not_found(error):
     return render_template("404.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)

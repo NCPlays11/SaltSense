@@ -2,11 +2,9 @@ from flask import Flask, render_template, jsonify, redirect, flash, request, url
 import pandas as pd
 import os
 import csv
-from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-load_dotenv()
 app.config["SECRET_KEY"] = os.getenv("FLASK_KEY")
 
 file_path = os.path.join(app.root_path, "static", "desalination_data.csv")
